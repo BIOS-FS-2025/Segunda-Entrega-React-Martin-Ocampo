@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className='navbar-user-section'>
         {user && (
           <div className='user-info'>
-                         <span className='user-name'>Bienvenido, {user.name}</span>
+                         <span className='user-name'>Welcome back, {user.name}</span>
                          <button className='logout-button' onClick={handleLogout}>
                Cerrar Sesión
              </button>
