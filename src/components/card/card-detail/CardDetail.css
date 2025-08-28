@@ -1,0 +1,122 @@
+.card-detail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    padding: 0 5rem;
+}
+
+
+.card-detail-img{
+    height: 310.2px;
+    width: 40%;
+    margin-top: 40px;
+}
+
+.card-detail-info{
+    width: 60%;
+}
+
+.card-detail img{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+
+.card-detail-info{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.card-detail-info-item{
+    display: flex;
+    justify-content: space-between;
+    padding-right: 5rem;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card-detail-info-item p{
+    font-size: .9rem;
+    font-weight: 400;
+    color: var(--lm-text);
+}
+
+.card-detail-border{
+    display: flex;
+    gap: 1rem;
+}
+
+.card-detail-border p{
+    font-size: .9rem;
+    font-weight: 400;
+    color: var(--lm-text);
+}
+
+.card-detail-info-item-left, .card-detail-info-item-right{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.card-detail-border-item{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card-detail-border-item p{
+    font-size: .9rem;
+    font-weight: 400;
+    color: var(--lm-text);
+}
+
+.card-detail-back{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 2rem 5rem;
+  
+}
+
+.card-detail-back button{
+    background-color: var(--lm-elements);
+    color: var(--lm-text);
+    border: none;
+    padding: 1rem 2.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: .9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: solid 1px #ccc;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-detail-border {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.card-detail-border-item p{
+    background-color: #ededed;
+    color: var(--lm-text);
+    border: solid 1px #ccc;
+    padding: .5rem 1.5rem;
+    border-radius: 5px;
+    font-size: .9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}

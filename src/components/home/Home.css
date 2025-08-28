@@ -1,0 +1,13 @@
+.home{
+    padding: 2rem 5rem;
+}
+
+.cards-container{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    padding-block: 3rem;
+    justify-content: center;
+    gap: 3.3rem;
+}
+

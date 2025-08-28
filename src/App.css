@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+:root{
+  --dm-elements: hsl(209, 23%, 22%);
+  --dm-background: hsl(207, 26%, 17%);
+  --lm-text: hsl(200, 15%, 8%);
+  --lm-input: hsl(0, 0%, 52%);
+  --lm-background: hsl(0, 0%, 99%);
+  --lm-elements: hsl(0, 0%, 100%);
+  --dm-text: hsl(0, 0%, 100%);
+}
+
+/* light por defecto */
+body{
+  background-color: var(--lm-background);
+  color: var(--lm-text);
+  transition: background-color .2s ease, color .2s ease;
+}
+
+/* dark cuando el body tiene la clase "dark" */
+body.dark{
+  background-color: var(--dm-background);
+  color: var(--dm-text);
+}
+
+/* ejemplo: una card cambia a elementos dark */
+body.dark .card{
+  background: var(--dm-elements);
+  color: var(--dm-text);
+}
+
+body.dark .card-detail-border-item p{
+  background-color: var(--dm-elements);
+  color: var(--dm-text);
+}
+
+body.dark .dark-mode-button svg{
+  fill: var(--dm-text);
+}
+
+body.dark .dark-mode-button{
+  background-color: var(--dm-elements);
+  color: var(--dm-text);
+}
+
+body.dark .navbar{
+  background: var(--dm-elements);
+  color: var(--dm-text);
+}
+
+body.dark .navbar-logo{
+  color: var(--dm-text);
+}
+
+body.dark .filters-container-search input{
+  background-color: var(--dm-elements);
+  color: var(--dm-text);
+}
+
+
+body.dark .filters-container-region select{
+  background: var(--dm-elements) !important;
+  color: var(--dm-text);
+  padding: 12px 60px 12px 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'><path fill='white' d='M104.704 338.752a64 64 0 0 1 90.496 0l316.8 316.8l316.8-316.8a64 64 0 0 1 90.496 90.496L557.248 791.296a64 64 0 0 1-90.496 0L104.704 429.248a64 64 0 0 1 0-90.496'/></svg>") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 14px center !important;
+  background-size: 10px !important;
+}
+
+
+body.dark .card-detail-back button{
+  background-color: var(--dm-elements);
+  color: var(--dm-text) ;
+}
+
+body.dark .card-detail p{
+  color: var(--dm-text) !important;
+}
+
+body.dark .logout-button{
+  background-color: var(--lm-background);
+  color: var(--lm-text);
+}
+
+body.dark .user-name{
+  color: var(--dm-text) !important;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .filters-container{
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card-detail{
+    flex-direction: column;
+    gap: 20px;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    margin-top: 250px;
+    padding: 0 0rem 2rem 0rem !important;
+    
+  }
+
+  .card-detail-back{
+    position: absolute;
+  }
+  .card-detail-img{
+  width: 315px !important ;
+  margin-top: 30px;
+  height: auto;
+  object-fit: cover;
+  }
+
+  .card-detail-info{
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 0 !important;
+    margin-bottom: 100px !important;
+  }
+
+
+  .card-detail-info-item{
+    flex-direction: column;
+  }
+
+  .card-detail-border{
+    flex-direction: column;
+    width:  100%;
+  }
+
+}

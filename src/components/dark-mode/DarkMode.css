@@ -1,0 +1,12 @@
+.dark-mode-button{
+  background-color: transparent;
+  color: var(--dm-elements);
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
