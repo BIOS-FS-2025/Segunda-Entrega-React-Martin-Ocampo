@@ -4,20 +4,14 @@ import { useAuth } from '../../contexts/AuthContext';
 import './Login.css';
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
+  const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const { login, validateCredentials } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
@@ -26,28 +20,10 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      if (formData.email && formData.password) {
-        // Validar credenciales contra usuarios predefinidos
-        const validUser = validateCredentials(formData.email, formData.password);
-        
-        if (validUser) {
-          // Crear objeto de usuario sin la contraseña
-          const userData = {
-            id: validUser.id,
-            name: validUser.name,
-            email: validUser.email
-          };
-          
-          login(userData);
-          navigate('/');
-        } else {
-          setError('Credenciales incorrectas. Por favor, verifica tu email y contraseña.');
-        }
-      } else {
-        setError('Por favor, completa todos los campos');
-      }
-    } catch (err) {
-      setError('Error al iniciar sesión. Por favor, intenta de nuevo.');
+      await Promise.resolve(login());
+      navigate('/');
+    } catch {
+      setError('No se pudo iniciar sesión. Intentá de nuevo.');
     } finally {
       setIsLoading(false);
     }
@@ -58,12 +34,12 @@ const Login = () => {
       <div className="login-card">
         <div className="login-header">
           <h1>Bienvenido a GeoTrip</h1>
-          <p>Inicia sesión con tu cuenta</p>
+          <p>Inicia sesión para continuar</p>
         </div>
 
         <form onSubmit={handleSubmit} className="login-form">
           {error && <div className="error-message">{error}</div>}
-          
+
           <div className="form-group">
             <label htmlFor="email">Correo Electrónico</label>
             <input
@@ -72,8 +48,7 @@ const Login = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Ingresa tu correo electrónico"
-              required
+              placeholder="Ingresa tu correo"
             />
           </div>
 
@@ -86,12 +61,11 @@ const Login = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Ingresa tu contraseña"
-              required
             />
           </div>
 
-          <button 
-            type="submit" 
+          <button
+            type="submit"
             className="login-button"
             disabled={isLoading}
           >

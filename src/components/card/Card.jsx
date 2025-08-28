@@ -15,8 +15,8 @@ const Card = ({ countriesOverride }) => {
             <img src={country.flags.png} alt={country.name}/>
           </Link>
           <h3>{country.name}</h3>
-          <p><strong>Population:</strong> {country.population}</p>
-          <p><strong>Region:</strong> {country.region}</p>
+          <p><strong>Población:</strong> {country.population}</p>
+          <p><strong>Región:</strong> {country.region}</p>
           <p><strong>Capital:</strong> {country.capital}</p>
         </div>
       ))}

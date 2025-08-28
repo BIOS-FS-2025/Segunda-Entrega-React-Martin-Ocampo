@@ -2,73 +2,46 @@ import { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
-// Usuarios predefinidos para el login
-const DEFAULT_USERS = [
-  {
-    id: 1,
-    name: 'Martin',
-    email: 'martin@gmail.com',
-    password: 'admin123'
-  }
-];
+// Usuario fijo por defecto
+const DEFAULT_USER = {
+  id: 1,
+  name: 'Martin',
+  email: 'martin@gmail.com',
+  password: 'admin123'
+};
 
 export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth debe ser usado dentro de un AuthProvider');
-  }
-  return context;
+  const ctx = useContext(AuthContext);
+  if (!ctx) throw new Error('useAuth debe usarse dentro de un AuthProvider');
+  return ctx;
 };
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Verifica si el usuario está logueado al iniciar la app
   useEffect(() => {
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
+    let saved = localStorage.getItem('user');
+    if (!saved) {
+      localStorage.setItem('user', JSON.stringify(DEFAULT_USER));
+      saved = JSON.stringify(DEFAULT_USER);
     }
+    setUser(JSON.parse(saved));
     setLoading(false);
   }, []);
 
-  // Función para iniciar sesión
-  const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
+  const login = () => {
+    setUser(DEFAULT_USER);
+    localStorage.setItem('user', JSON.stringify(DEFAULT_USER));
   };
 
-  // Función para cerrar sesión
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
   };
 
-  const register = (userData) => {
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
-  };
-
-  // Función para validar credenciales del usuario
-  const validateCredentials = (email, password) => {
-    const foundUser = DEFAULT_USERS.find(user => 
-      user.email === email && user.password === password
-    );
-    return foundUser;
-  };
-
-  const value = {
-    user,
-    login,
-    logout,
-    register,
-    loading,
-    validateCredentials
-  };
-
   return (
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider value={{ user, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

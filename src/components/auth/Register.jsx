@@ -4,58 +4,21 @@ import { useAuth } from '../../contexts/AuthContext';
 import './Register.css';
 
 const Register = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
-  });
-  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const [isLoading, setIsLoading] = useState(false);
-  
-  const { register } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
     setIsLoading(true);
-
     try {
-      // Validate form data
-      if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword) {
-        setError('Por favor, completa todos los campos');
-        return;
-      }
-
-      if (formData.password !== formData.confirmPassword) {
-        setError('Las contraseñas no coinciden');
-        return;
-      }
-
-      if (formData.password.length < 6) {
-        setError('La contraseña debe tener al menos 6 caracteres');
-        return;
-      }
-
-      // Crear nuevo usuario
-      const userData = {
-        id: Date.now(),
-        name: formData.name,
-        email: formData.email
-      };
-      
-      register(userData);
+      await Promise.resolve(login());
       navigate('/');
-    } catch (err) {
-      setError('Error en el registro. Por favor, intenta de nuevo.');
     } finally {
       setIsLoading(false);
     }
@@ -66,12 +29,10 @@ const Register = () => {
       <div className="register-card">
         <div className="register-header">
           <h1>Registrarse</h1>
-          <p>Registrate para empezar el viaje</p>
+          <p>Creá tu cuenta para continuar</p>
         </div>
 
         <form onSubmit={handleSubmit} className="register-form">
-          {error && <div className="error-message">{error}</div>}
-          
           <div className="form-group">
             <label htmlFor="name">Nombre</label>
             <input
@@ -81,7 +42,6 @@ const Register = () => {
               value={formData.name}
               onChange={handleChange}
               placeholder="Ingresa tu nombre completo"
-              required
             />
           </div>
 
@@ -94,7 +54,6 @@ const Register = () => {
               value={formData.email}
               onChange={handleChange}
               placeholder="Ingresa tu correo electrónico"
-              required
             />
           </div>
 
@@ -107,7 +66,6 @@ const Register = () => {
               value={formData.password}
               onChange={handleChange}
               placeholder="Ingresa tu contraseña"
-              required
             />
           </div>
 
@@ -120,17 +78,17 @@ const Register = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="Confirma tu contraseña"
-              required
             />
           </div>
-
-          <button 
-            type="submit" 
+        <Link to="/login" className="login-link">
+          <button
+            type="submit"
             className="register-button"
             disabled={isLoading}
           >
             {isLoading ? 'Creando cuenta...' : 'Crear Cuenta'}
           </button>
+          </Link>
         </form>
 
         <div className="register-footer">

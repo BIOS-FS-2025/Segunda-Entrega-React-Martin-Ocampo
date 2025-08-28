@@ -35,22 +35,22 @@ const CardDetail = () => {
           <h1>{country.name}</h1>
           <div className='card-detail-info-item'>
             <div className='card-detail-info-item-left'>
-              <p><strong>Population:</strong> {country.population?.toLocaleString?.() ?? country.population}</p>
-              <p><strong>Native Name:</strong> {country.nativeName || country.name}</p>
-              <p><strong>Region:</strong> {country.region}</p>
-              <p><strong>Sub Region:</strong> {country.subregion}</p>
+              <p><strong>Población:</strong> {country.population?.toLocaleString?.() ?? country.population}</p>
+              <p><strong>Nombre Nativo:</strong> {country.nativeName || country.name}</p>
+              <p><strong>Región:</strong> {country.region}</p>
+              <p><strong>Sub Región:</strong> {country.subregion}</p>
               <p><strong>Capital:</strong> {country.capital || '—'}</p>
             </div>
             <div className='card-detail-info-item-right'>
-              <p><strong>Top Level Domain:</strong> {country.topLevelDomain?.[0] || 'N/A'}</p>
+              <p><strong>Dominio Top Level:</strong> {country.topLevelDomain?.[0] || 'N/A'}</p>
               <p>
-                <strong>Languages:</strong>{' '}
+                <strong>Lenguajes:</strong>{' '}
                 {Array.isArray(country.languages)
                   ? country.languages.map(l => l.name).filter(Boolean).join(', ')
                   : 'N/A'}
               </p>
               <p>
-                <strong>Currencies:</strong>{' '}
+                <strong>Moneda:</strong>{' '}
                 {Array.isArray(country.currencies)
                   ? country.currencies.map(c => c.code || c.name).filter(Boolean).join(', ')
                   : 'N/A'}
@@ -58,14 +58,14 @@ const CardDetail = () => {
             </div>
           </div>
           <div className='card-detail-border'>
-            <p><strong>Border Countries:</strong></p>
+            <p><strong>Países Limítrofes:</strong></p>
             <div className='card-detail-border-item'>
               {Array.isArray(country.borders) && country.borders.length > 0 ? (
                 country.borders.map((border, index) => (
                   <p key={index}>{border}</p>
                 ))
               ) : (
-                <p>No border countries</p>
+                <p>Sin países limítrofes</p>
               )}
             </div>
           </div>

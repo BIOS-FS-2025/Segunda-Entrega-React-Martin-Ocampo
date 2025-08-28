@@ -7,14 +7,14 @@ import GetData from '../../hooks/GetData'
 const Home = () => {
   const { countries } = GetData()                
   const [query, setQuery] = useState('')
-  const [region, setRegion] = useState('Filter by Region')    
+  const [region, setRegion] = useState('Filtrar por región')    
 
   
   const filtered = useMemo(() => {
     const q = query.toLowerCase()
     return countries.filter(c => {
       const nameOk = (c.name || '').toLowerCase().includes(q)
-      const regionOk = region === 'Filter by Region' ? true : c.region === region
+      const regionOk = region === 'Filtrar por región' ? true : c.region === region
       return nameOk && regionOk
     })
   }, [countries, query, region])

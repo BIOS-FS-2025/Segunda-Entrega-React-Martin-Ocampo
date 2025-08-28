@@ -2,7 +2,7 @@ import React from 'react'
 import "./Filters.css"
 
 const Filters = ({ query, setQuery, region, setRegion, countries }) => {
-  const regions = ['Filter by Region', ...Array.from(new Set(
+  const regions = ['Filtrar por región', ...Array.from(new Set(
     (countries || []).map(c => c.region).filter(Boolean)
   ))]
 
@@ -15,7 +15,7 @@ const Filters = ({ query, setQuery, region, setRegion, countries }) => {
           </svg>
           <input
             type="text"
-            placeholder='Search for a country...'
+            placeholder='Buscar un país...'
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
