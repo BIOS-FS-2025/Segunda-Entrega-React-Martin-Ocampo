@@ -1,25 +1,28 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
-import './Login.css';
+import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
+import "./Login.css";
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
-  const [error, setError] = useState('');
-  const { login, DEFAULT_USER } = useAuth();
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
+  const { login, defaultUser } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.email === DEFAULT_USER.email && formData.password === DEFAULT_USER.password) {
+    if (
+      formData.email === defaultUser.email &&
+      formData.password === defaultUser.password
+    ) {
       login();
-      navigate('/');
+      navigate("/");
     } else {
-      setError('Credenciales incorrectas. Intenta nuevamente.');
+      setError("Credenciales incorrectas. Intenta nuevamente.");
     }
   };
 
@@ -65,7 +68,7 @@ const Login = () => {
 
         <div className="login-footer">
           <p>
-            ¿No tienes una cuenta?{' '}
+            ¿No tienes una cuenta?{" "}
             <Link to="/register" className="register-link">
               Regístrate
             </Link>
