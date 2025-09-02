@@ -14,7 +14,7 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     if (
       formData.email === defaultUser.email &&
       formData.password === defaultUser.password
