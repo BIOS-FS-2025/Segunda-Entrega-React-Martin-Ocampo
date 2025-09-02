@@ -1,4 +1,3 @@
-import React from "react";
 import "./CardDetail.css";
 import { useParams } from "react-router-dom";
 import GetData from "../../../hooks/GetData";

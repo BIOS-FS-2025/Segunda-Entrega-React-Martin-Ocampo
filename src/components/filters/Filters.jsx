@@ -1,6 +1,4 @@
 import "./Filters.css";
-import React from "react";
-
 const Filters = ({ query, setQuery, region, setRegion, countries = [] }) => {
   const allRegions = countries.map((c) => c.region);
   const uniqueRegions = [...new Set(allRegions)];
