@@ -6,26 +6,20 @@ import './Login.css';
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, DEFAULT_USER } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setError('');
-    setIsLoading(true);
-
-    try {
-      await Promise.resolve(login());
+    if (formData.email === DEFAULT_USER.email && formData.password === DEFAULT_USER.password) {
+      login();
       navigate('/');
-    } catch {
-      setError('No se pudo iniciar sesión. Intentá de nuevo.');
-    } finally {
-      setIsLoading(false);
+    } else {
+      setError('Credenciales incorrectas. Intenta nuevamente.');
     }
   };
 
@@ -64,12 +58,8 @@ const Login = () => {
             />
           </div>
 
-          <button
-            type="submit"
-            className="login-button"
-            disabled={isLoading}
-          >
-            {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+          <button type="submit" className="login-button">
+            Iniciar Sesión
           </button>
         </form>
 
