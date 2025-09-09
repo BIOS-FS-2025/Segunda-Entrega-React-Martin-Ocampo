@@ -5,7 +5,8 @@ import Filters from "../filters/Filters";
 import GetData from "../../hooks/GetData";
 
 const Home = () => {
-  const { countries = [] } = GetData();
+  const { countries } = GetData();
+  console.log(countries);
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState("Filtrar por región");
 

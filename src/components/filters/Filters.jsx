@@ -15,7 +15,6 @@ const Filters = ({ query, setQuery, region, setRegion, countries = [] }) => {
             onChange={(e) => setQuery(e.target.value)}
           />
         </div>
-
         <div className="filters-container-region">
           <select value={region} onChange={(e) => setRegion(e.target.value)}>
             {regions.map((r) => (
