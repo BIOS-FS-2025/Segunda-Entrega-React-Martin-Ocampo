@@ -23,7 +23,7 @@ const CardDetail = () => {
     <>
       <div className="card-detail-back">
         <Link to="/home">
-          <button>Back</button>
+          <button>Atrás</button>
         </Link>
       </div>
       <div className="card-detail">
