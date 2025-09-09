@@ -3,9 +3,9 @@ import "./Card.css";
 import GetData from "../../hooks/GetData";
 import { Link } from "react-router-dom";
 
-const Card = ({ countriesOverride }) => {
+const Card = () => {
   const { countries } = GetData();
-  const list = countriesOverride || countries;
+  const list = countries;
 
   return (
     <>
