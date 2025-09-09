@@ -5,7 +5,7 @@ const DarkMode = () => {
 
   // cuando el componente se monta, leo LS
   useEffect(() => {
-    const saved = localStorage.getItem("theme") || "light";
+    const saved = localStorage.getItem("theme");
     setMode(saved);
     document.body.classList.toggle("dark", saved === "dark");
   }, []);
